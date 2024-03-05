@@ -1,4 +1,4 @@
 Django==5.0.2
-django-rest-framework==3.14.0
+djangorestframework==3.11.0
 google-generativeai==0.4.0
 requests==2.31.0
