@@ -3,8 +3,8 @@ from django.views import generic
 # from .models import User, Questionnaire, Recommendation, Response
 
 # Create your views here.
-from rest_framework.response import Response
-from rest_framework import generics, permissions
+from  rest_framework.response import Response
+from rest_framework import generics, permissions, status, views
 from .models import *
 from .serializers import *
 
@@ -18,7 +18,6 @@ class UserCreateView(generics.CreateAPIView):
 
 # User login view
 from django.contrib.auth import authenticate, login
-from rest_framework import status, views
 
 class LoginView(views.APIView):
     def post(self, request, *args, **kwargs):
@@ -28,7 +27,9 @@ class LoginView(views.APIView):
         if user is not None:
             login(request, user)
             return Response(status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        return Response("Unauthorized", status=status.HTTP_401_UNAUTHORIZED)
+
 
 
 
@@ -59,7 +60,7 @@ class RecommendationListCreateView(generics.ListCreateAPIView):
     serializer_class = RecommendationSerializer
 
 class ResponseListCreateView(generics.ListCreateAPIView):
-    queryset = Response.objects.all()
+    queryset = ResponseModel.objects.all()
     serializer_class = ResponseSerializer
 
 
@@ -107,10 +108,10 @@ class RecommendationDetailView(generic.DetailView):
     template_name = 'recommendations/recommendation_detail.html'  # Specify your own template name/location
 
 class ResponseListView(generic.ListView):
-    model = Response
+    model = ResponseModel
     template_name = 'responses/response_list.html'  # Specify your own template name/location
 
 class ResponseDetailView(generic.DetailView):
-    model = Response
+    model = ResponseModel
     template_name = 'responses/response_detail.html'  # Specify your own template name/location
 

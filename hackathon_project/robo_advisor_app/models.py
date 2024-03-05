@@ -6,7 +6,7 @@ class User(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    email = models.EmailField(unique=True)
+    email = models.CharField(max_length = 100)
     age = models.PositiveIntegerField()
     password = models.CharField(max_length=128)  # Store hashed passwords
 
@@ -33,7 +33,7 @@ class Questionnaire(models.Model):
 # create recommendation object
 class Recommendation(models.Model):
     questionnaire = models.OneToOneField(Questionnaire, on_delete=models.CASCADE)
-    response = models.ManyToManyField("Response")
+    response = models.ManyToManyField("ResponseModel")
 
     def __str__(self):
         return f"Recommendation for Questionnaire {self.questionnaire.id}"
@@ -44,13 +44,13 @@ class Recommendation(models.Model):
         recommendations = ai_service.get_recommendations(self.questionnaire)
         # Parse the AI response and create Response objects
         for rec in recommendations:
-            response = Response.objects.create(**rec)
+            response = ResponseModel.objects.create(**rec)
             self.responses.add(response)
         self.save()
 
 
 # create recommendation object
-class Response(models.Model):
+class ResponseModel(models.Model):
     id = models.AutoField(primary_key=True)
     financial_product = models.TextField(max_length=200)
     ticker = models.TextField(max_length=200)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Questionnaire, Recommendation, Response
+from .models import *
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,6 +18,6 @@ class RecommendationSerializer(serializers.ModelSerializer):
 
 class ResponseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Response
+        model = ResponseModel
         fields = "__all__"
 

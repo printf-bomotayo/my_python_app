@@ -2,9 +2,9 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import User, Questionnaire, Recommendation, Response
+from .models import *
 
 admin.site.register(User)
-admin.site.register(Questionnaire)
-admin.site.register(Recommendation)
-admin.site.register(Response)
+# admin.site.register(Questionnaire)
+# admin.site.register(Recommendation)
+# admin.site.register(ResponseModel)
