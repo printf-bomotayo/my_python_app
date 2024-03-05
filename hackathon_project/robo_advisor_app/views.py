@@ -8,6 +8,32 @@ from rest_framework import generics, permissions
 from .models import *
 from .serializers import *
 
+from django.contrib.auth.models import User
+
+# create new user view method
+class UserCreateView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+# User login view
+from django.contrib.auth import authenticate, login
+from rest_framework import status, views
+
+class LoginView(views.APIView):
+    def post(self, request, *args, **kwargs):
+        username = request.data.get("username")
+        password = request.data.get("password")
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+
+
+
 class UserListCreateView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer

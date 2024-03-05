@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-tkwp-9o$y+goe674_a8!e(kc0txv(&pbjy$k=@2sa%&y3wc*i4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://robo-advisor-api.onrender.com']
+ALLOWED_HOSTS = ['*']  # ['http://127.0.0.1', 'https://robo-advisor-api.onrender.com']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'robo_advisor_app',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'hackathon_project.urls'
@@ -100,6 +102,14 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+## OR
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:8000',
+#     # other domains...
+# ]
 
 
 # Internationalization

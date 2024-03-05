@@ -22,7 +22,11 @@ from robo_advisor_app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('api/users/', UserCreateView.as_view(), name='user_create'),
+
     path('api/users/', UserListCreateView.as_view(), name='user_list'),
+
+    path('api/login/', LoginView.as_view(), name='login'),
 
     path('api/users/<int:user_id>/questionnaires/', UserQuestionnaireListView.as_view(), name='user_questionnaires'),
 
