@@ -2,3 +2,4 @@ Django==5.0.2
 djangorestframework==3.11.0
 google-generativeai==0.4.0
 requests==2.31.0
+gunicorn==21.2.0

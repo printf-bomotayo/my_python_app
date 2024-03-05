@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-tkwp-9o$y+goe674_a8!e(kc0txv(&pbjy$k=@2sa%&y3wc*i4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://robo-advisor-api.onrender.com']
 
 
 # Application definition
